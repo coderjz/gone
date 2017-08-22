@@ -1,3 +1,9 @@
+# Fork
+
+- Do not prompt to continue between states.
+- Automatically show a [notification](https://github.com/deckarep/gosx-notifier) when changing states.
+- Licensing for code taken should respect [pomodoro gone](https://github.com/guillaumebreton/gone) [notifications](https://github.com/deckarep/gosx-notifier).  My changes are MIT licensed.
+
 # Gone [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=flat-square)](https://github.com/goreleaser)
 
 Gone is a simple cli pomodoro timer for OSX and Linux. It can execute a

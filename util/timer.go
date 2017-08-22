@@ -2,11 +2,13 @@ package util
 
 import (
 	"fmt"
-	"github.com/guillaumebreton/gone/painter"
-	"github.com/guillaumebreton/gone/state"
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/coderjz/gone/painter"
+	"github.com/coderjz/gone/state"
+	"github.com/deckarep/gosx-notifier"
 )
 
 // Timer count time and update the state accordingly.
@@ -55,8 +57,24 @@ func (t *Timer) Run() {
 			fmt.Printf("Fail to execute command : %s - %v\n", t.command, err)
 		}
 	}
-	t.state.WaitForConfirm(t.Run)
-	t.painter.Draw()
+
+	//t.state.WaitForConfirm(t.Run)
+	//Auto-continue - switch to next state
+	t.state.Next()
+
+	//Show notification for our new state
+	note := gosxnotifier.NewNotification("")
+
+	note.Message = fmt.Sprintf("%s (%s) - Until %v", t.state.Message(), t.state.Duration(),
+		time.Now().Add(time.Second*time.Duration(t.state.DurationInSecs())).Format(time.Kitchen))
+	note.Title = "Pomodoro"
+	err := note.Push()
+	if err != nil {
+		fmt.Printf("Fail to show notification: %v\n", err)
+	}
+
+	//Auto-continue - run the new state
+	t.Run()
 }
 
 // Stop the timer

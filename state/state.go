@@ -105,3 +105,8 @@ func (s *State) Duration() string {
 	minutes := s.duration / 60
 	return fmt.Sprintf("%02d:%02d", minutes, seconds)
 }
+
+// DurationInSecs - Returns the total number of seconds in the duration
+func (s *State) DurationInSecs() int {
+	return s.duration
+}

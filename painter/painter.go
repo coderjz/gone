@@ -2,10 +2,11 @@ package painter
 
 import (
 	"fmt"
-	"github.com/guillaumebreton/gone/state"
-	"github.com/nsf/termbox-go"
 	"strings"
 	"sync"
+
+	"github.com/coderjz/gone/state"
+	"github.com/nsf/termbox-go"
 )
 
 // ColorMode defines the color scheme of a painter
